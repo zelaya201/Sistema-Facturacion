@@ -5,6 +5,7 @@
  */
 package main;
 
+import modulos.Producto;
 import javax.swing.JFrame;
 import modulos.CambiaPanel;
 import modulos.Factura;
@@ -184,7 +185,7 @@ public class MainView extends javax.swing.JFrame {
         btnProductos.setOpaque(true);
         btnProductos.setBackground(new java.awt.Color(31,36,47));
         op = 2;
-        
+        new CambiaPanel(panelPrincipal, new Producto());
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
