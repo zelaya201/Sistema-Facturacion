@@ -1,4 +1,4 @@
-package sistemaFacturacion;
+package classes;
 
 public abstract class Persona {
     private String nombre;

@@ -1,4 +1,4 @@
-package sistemaFacturacion;
+package classes;
 
 public class Producto {
     private int codigo;

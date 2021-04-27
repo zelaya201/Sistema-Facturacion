@@ -1,4 +1,4 @@
-package sistemaFacturacion;
+package classes;
 
 public class Vendedor extends Persona {
     private static final double COMISION = 0.05;
