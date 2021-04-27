@@ -1,18 +1,21 @@
 package sistemaFacturacion;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Factura {
     private Cliente cliente;
     private Vendedor vendedor;
-    private Detalle detalle;
+    private ArrayList<Detalle> detalle;
     
     private Date fecha;
     private double total;
     private static int numero;
 
-    public Factura(Date fecha) {
-         this.fecha = fecha;
+    public Factura(Date fecha, int numero) {
+        Factura.numero = numero; 
+        this.fecha = fecha;
+        this.detalle = new ArrayList();
     }
     
     public void addCliente(String nombre, String telefono, String direccion) {
@@ -23,8 +26,8 @@ public class Factura {
         this.vendedor = new Vendedor(dui, nombre, telefono);
     }
     
-    public void addDetalle(Detalle d) {
-        this.detalle = d;
+    public void addDetalle(Detalle obj) {
+        this.detalle.add(obj);
     }
 
     public Date getFecha() {
@@ -67,12 +70,12 @@ public class Factura {
         this.vendedor = vendedor;
     }
 
-    public Detalle getDetalle() {
+    public ArrayList<Detalle> getDetalles() {
         return detalle;
     }
 
-    public void setDetalle(Detalle detalle) {
-        this.detalle = detalle;
+    public void setDetalles(ArrayList<Detalle> detalles) {
+        this.detalle = detalles;
     }
         
     public void calcularTotal() {
