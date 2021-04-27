@@ -19,6 +19,7 @@ public class Factura extends javax.swing.JPanel {
      */
     public Factura() {
         initComponents();
+     
     }
 
     /**
@@ -32,8 +33,8 @@ public class Factura extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaFactura = new rojerusan.RSTableMetro();
         btnNuevaFactura = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -42,33 +43,73 @@ public class Factura extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 0, 0, new java.awt.Color(19, 22, 29)), javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(204, 204, 204))));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaFactura.setBackground(new java.awt.Color(255, 255, 255));
+        tablaFactura.setForeground(new java.awt.Color(255, 255, 255));
+        tablaFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, ""}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "N°", "DUI", "Nombre", "Apellidos", "Cargo", "Salario", "", ""
+                "No. de Factura", "Fecha", "Cliente", "Vendedor", "Total"
             }
-        ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaFactura.setAltoHead(40);
+        tablaFactura.setColorBackgoundHead(new java.awt.Color(255, 255, 255));
+        tablaFactura.setColorBordeFilas(new java.awt.Color(232, 232, 232));
+        tablaFactura.setColorBordeHead(new java.awt.Color(232, 232, 232));
+        tablaFactura.setColorFilasBackgound2(new java.awt.Color(232, 232, 232));
+        tablaFactura.setColorFilasForeground1(new java.awt.Color(0, 0, 51));
+        tablaFactura.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
+        tablaFactura.setColorForegroundHead(new java.awt.Color(51, 51, 51));
+        tablaFactura.setColorSelForeground(new java.awt.Color(51, 51, 51));
+        tablaFactura.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tablaFactura.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tablaFactura.setFuenteHead(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        tablaFactura.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaFactura.setGrosorBordeFilas(0);
+        tablaFactura.setRowHeight(25);
+        tablaFactura.getTableHeader().setResizingAllowed(false);
+        tablaFactura.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tablaFactura);
+        if (tablaFactura.getColumnModel().getColumnCount() > 0) {
+            tablaFactura.getColumnModel().getColumn(0).setResizable(false);
+            tablaFactura.getColumnModel().getColumn(0).setPreferredWidth(1);
+            tablaFactura.getColumnModel().getColumn(1).setResizable(false);
+            tablaFactura.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tablaFactura.getColumnModel().getColumn(2).setResizable(false);
+            tablaFactura.getColumnModel().getColumn(2).setPreferredWidth(250);
+            tablaFactura.getColumnModel().getColumn(3).setResizable(false);
+            tablaFactura.getColumnModel().getColumn(3).setPreferredWidth(250);
+            tablaFactura.getColumnModel().getColumn(4).setResizable(false);
+            tablaFactura.getColumnModel().getColumn(4).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
         );
 
         btnNuevaFactura.setBackground(new java.awt.Color(8, 69, 159));
@@ -76,7 +117,7 @@ public class Factura extends javax.swing.JPanel {
         btnNuevaFactura.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevaFactura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnNuevaFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_25px.png"))); // NOI18N
-        btnNuevaFactura.setText("Nuevo");
+        btnNuevaFactura.setText("Nueva Factura");
         btnNuevaFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevaFactura.setOpaque(true);
         btnNuevaFactura.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,7 +127,7 @@ public class Factura extends javax.swing.JPanel {
         });
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/list_view_20px.png"))); // NOI18N
         jLabel1.setText("Factura / Historial");
@@ -95,7 +136,7 @@ public class Factura extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
@@ -103,17 +144,17 @@ public class Factura extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNuevaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addComponent(btnNuevaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(36, 36, 36))
         );
@@ -141,7 +182,7 @@ public class Factura extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private rojerusan.RSTableMetro tablaFactura;
     // End of variables declaration//GEN-END:variables
 }
