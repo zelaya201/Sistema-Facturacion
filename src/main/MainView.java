@@ -7,7 +7,7 @@ package main;
 
 import javax.swing.JFrame;
 import modulos.CambiaPanel;
-import modulos.Empleados;
+import modulos.Factura;
 import modulos.Home;
 
 public class MainView extends javax.swing.JFrame {
@@ -34,7 +34,7 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(19, 22, 29));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -42,7 +42,7 @@ public class MainView extends javax.swing.JFrame {
 
         btnProductos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnProductos.setForeground(new java.awt.Color(255, 255, 255));
-        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/suitcase_32px.png"))); // NOI18N
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boxpx.png"))); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.setToolTipText(null);
         btnProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
@@ -59,7 +59,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        btnInicio.setBackground(new java.awt.Color(46, 58, 113));
+        btnInicio.setBackground(new java.awt.Color(31, 36, 47));
         btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home_32px.png"))); // NOI18N
@@ -84,7 +84,7 @@ public class MainView extends javax.swing.JFrame {
 
         btnFactura.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnFactura.setForeground(new java.awt.Color(255, 255, 255));
-        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/scales_32px.png"))); // NOI18N
+        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/list_view_32px.png"))); // NOI18N
         btnFactura.setText("Factura");
         btnFactura.setToolTipText(null);
         btnFactura.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
@@ -182,16 +182,16 @@ public class MainView extends javax.swing.JFrame {
         resetColorBtn();
         btnProductos.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0), javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 5, new java.awt.Color(255, 255, 255))));
         btnProductos.setOpaque(true);
-        btnProductos.setBackground(new java.awt.Color(46, 58, 113));
+        btnProductos.setBackground(new java.awt.Color(31,36,47));
         op = 2;
-        new CambiaPanel(panelPrincipal, new Empleados());
+        
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
         resetColorBtn();
         btnInicio.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0), javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 5, new java.awt.Color(255, 255, 255))));
         btnInicio.setOpaque(true);
-        btnInicio.setBackground(new java.awt.Color(46, 58, 113));
+        btnInicio.setBackground(new java.awt.Color(31,36,47));
         op = 1;
         new CambiaPanel(panelPrincipal, new Home());
     }//GEN-LAST:event_btnInicioMouseClicked
@@ -200,21 +200,22 @@ public class MainView extends javax.swing.JFrame {
         resetColorBtn();
         btnFactura.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0), javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 5, new java.awt.Color(255, 255, 255))));
         btnFactura.setOpaque(true);
-        btnFactura.setBackground(new java.awt.Color(46, 58, 113));  
+        btnFactura.setBackground(new java.awt.Color(31,36,47));  
         op = 3;
+        new CambiaPanel(panelPrincipal, new Factura());
     }//GEN-LAST:event_btnFacturaMouseClicked
 
     //Animación tipo Hover del Menu 
     private void btnProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseEntered
         if(op != 2){
             btnProductos.setOpaque(true);
-            btnProductos.setBackground(new java.awt.Color(46, 58, 113));
+            btnProductos.setBackground(new java.awt.Color(31,36,47));
         }
     }//GEN-LAST:event_btnProductosMouseEntered
 
     private void btnProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseExited
         if(op != 2){
-            btnProductos.setBackground(new java.awt.Color(38, 49, 96));
+            btnProductos.setBackground(new java.awt.Color(19,22,29));
             btnProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         }
     }//GEN-LAST:event_btnProductosMouseExited
@@ -222,13 +223,13 @@ public class MainView extends javax.swing.JFrame {
     private void btnInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseEntered
         if(op != 1){
             btnInicio.setOpaque(true);
-            btnInicio.setBackground(new java.awt.Color(46, 58, 113));
+            btnInicio.setBackground(new java.awt.Color(31,36,47));
         }
     }//GEN-LAST:event_btnInicioMouseEntered
 
     private void btnInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseExited
         if(op != 1){
-            btnInicio.setBackground(new java.awt.Color(38, 49, 96));
+            btnInicio.setBackground(new java.awt.Color(19,22,29));
             btnInicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         }
     }//GEN-LAST:event_btnInicioMouseExited
@@ -236,13 +237,13 @@ public class MainView extends javax.swing.JFrame {
     private void btnFacturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFacturaMouseEntered
         if(op != 3){
             btnFactura.setOpaque(true);
-            btnFactura.setBackground(new java.awt.Color(46, 58, 113));
+            btnFactura.setBackground(new java.awt.Color(31,36,47));
         }
     }//GEN-LAST:event_btnFacturaMouseEntered
 
     private void btnFacturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFacturaMouseExited
         if(op != 3){
-            btnFactura.setBackground(new java.awt.Color(38, 49, 96));
+            btnFactura.setBackground(new java.awt.Color(19,22,29));
             btnFactura.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         }
     }//GEN-LAST:event_btnFacturaMouseExited
@@ -252,13 +253,13 @@ public class MainView extends javax.swing.JFrame {
      */
     
     public void resetColorBtn(){
-        btnInicio.setBackground(new java.awt.Color(38, 49, 96));
+        btnInicio.setBackground(new java.awt.Color(19,22,29));
         btnInicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         
-        btnProductos.setBackground(new java.awt.Color(38, 49, 96));
+        btnProductos.setBackground(new java.awt.Color(19,22,29));
         btnProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
         
-        btnFactura.setBackground(new java.awt.Color(38, 49, 96));
+        btnFactura.setBackground(new java.awt.Color(19,22,29));
         btnFactura.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 0, 0));
      
     }
