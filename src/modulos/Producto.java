@@ -136,7 +136,7 @@ public class Producto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevoPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoPMouseClicked
- NuevoProducto nuevo=new NuevoProducto(new JFrame(), true, this);
+ NuevoProduct nuevo=new NuevoProduct(new JFrame(), true, this);
         nuevo.setVisible(true);
   
      
