@@ -69,7 +69,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Bienvenido/a al Sistema de Facturaci&#xf3;n PRUEBA"/>
+            <Property name="text" type="java.lang.String" value="Bienvenido/a al Sistema de Facturaci&#xf3;n"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>

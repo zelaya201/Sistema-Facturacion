@@ -5,6 +5,7 @@
  */
 package main;
 
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import modulos.CambiaPanel;
 import modulos.Factura;
@@ -13,11 +14,13 @@ import modulos.Home;
 public class MainView extends javax.swing.JFrame {
     
     int op = 1;
+    ArrayList<classes.Factura> registro;
 
     public MainView() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);     
         new CambiaPanel(panelPrincipal, new Home());
+        registro = new ArrayList();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -202,7 +205,7 @@ public class MainView extends javax.swing.JFrame {
         btnFactura.setOpaque(true);
         btnFactura.setBackground(new java.awt.Color(31,36,47));  
         op = 3;
-        new CambiaPanel(panelPrincipal, new Factura());
+        new CambiaPanel(panelPrincipal, new Factura(registro));
     }//GEN-LAST:event_btnFacturaMouseClicked
 
     //Animación tipo Hover del Menu 
