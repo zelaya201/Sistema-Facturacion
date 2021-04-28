@@ -1,18 +1,23 @@
 
 package modulos;
 
+import java.awt.LayoutManager;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 public class NuevoProducto extends javax.swing.JPanel {
     
 Producto producto;
-    
+
+
     NuevoProducto(JFrame jFrame, boolean b, Producto aThis) {
+          super( b);
+        this.producto = producto;
         initComponents();
-        this.producto = producto; 
-         
+    
     }
 
+ 
    
 
     @SuppressWarnings("unchecked")
@@ -20,7 +25,7 @@ Producto producto;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cod = new javax.swing.JTextField();
         descripcion = new javax.swing.JTextField();
@@ -29,10 +34,10 @@ Producto producto;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setText("GUARDAR");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
 
@@ -90,7 +95,7 @@ Producto producto;
                 .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(guardar)
                 .addGap(115, 115, 115))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,7 +116,7 @@ Producto producto;
                     .addComponent(jLabel3)
                     .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addComponent(guardar)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -129,16 +134,16 @@ Producto producto;
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
 String rowData[]=new String[4];
         rowData[0]=cod.getText();
         rowData[1]=descripcion.getText();
         rowData[2]=precio.getText();
-        Double imp=Double.parseDouble(rowData[1])*Double.parseDouble(rowData[2]);
-        rowData[3]=imp.toString();
+        Double imp=Double.parseDouble(rowData[0])*Double.parseDouble(rowData[1]);
+        rowData[2]=imp.toString();
        //
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_guardarActionPerformed
 
     private void codKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codKeyReleased
         // TODO add your handling code here:
@@ -169,7 +174,7 @@ String rowData[]=new String[4];
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cod;
     private javax.swing.JTextField descripcion;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
