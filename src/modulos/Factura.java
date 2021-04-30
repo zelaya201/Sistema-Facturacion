@@ -164,7 +164,7 @@ public class Factura extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public String obtenerFechaFormateada(Date fecha) {
-        SimpleDateFormat formatFecha = new SimpleDateFormat("dd/MM/yyyy"); //Formato de fecha obtenido por el parametro
+        SimpleDateFormat formatFecha = new SimpleDateFormat("dd/MM/yyyy"); //Formato de fecha
         return formatFecha.format(fecha); //retorna la fecha formateada
     }
     
@@ -176,10 +176,10 @@ public class Factura extends javax.swing.JPanel {
             
             modelo.addRow(new Object[]{
                 "000" + classes.Factura.getNumero(), //Numero de Factura
-                x.getFecha(), //Fecha
+                obtenerFechaFormateada(x.getFecha()), //Fecha
                 x.getCliente().getNombre(), //Cliente
                 x.getVendedor().getNombre(), //Vendedor
-                "$ " + x.getTotal() //Total venta
+                "$ " + x.calcularTotal() //Total venta
             });
         }
         

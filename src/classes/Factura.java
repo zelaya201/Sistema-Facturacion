@@ -78,12 +78,21 @@ public class Factura {
         this.detalle = detalles;
     }
         
-    public void calcularTotal() {
+    public double calcularTotal() {
         
+        double totalFactura = 0;
+        
+        for(Detalle d : detalle){
+            totalFactura += d.getSubTotal();
+        }
+        
+        totalFactura = calcularIva(totalFactura) + totalFactura;
+        
+        return totalFactura;
     }
     
-    public double calcularIva() {
-       return 3;
+    public double calcularIva(double total) {
+       return 0.13 * total;
     }
 
     @Override
