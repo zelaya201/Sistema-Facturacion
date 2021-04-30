@@ -216,7 +216,9 @@ public class AgregarProducto extends javax.swing.JDialog {
                     Detalle obj = new Detalle(x, cantidad);
                     
                     temp.add(obj);
+                    
                     newFactura.mostrarProductosFactura();
+                    JOptionPane.showMessageDialog(this, "Producto agregado correctamente", "Agregar Producto", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
