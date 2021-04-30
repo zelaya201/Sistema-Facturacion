@@ -1,10 +1,13 @@
 
 package modulos;
 
+import classes.Detalle;
+import classes.Producto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,12 +23,11 @@ public class NuevaFactura extends javax.swing.JDialog {
         this.factura = factura;
         setLocationRelativeTo(null);
         temp = new ArrayList();
-        
+                
         tfFecha.setText(factura.obtenerFechaFormateada(new Date())); //Fehca
         lbNoFactura.setText("No. de Factura: 000" + (factura.registro.size()+1)); //Numero de Factura
-        
+               
         mostrarProductosFactura();
-        
     }
    
     @SuppressWarnings("unchecked")
@@ -393,7 +395,8 @@ public class NuevaFactura extends javax.swing.JDialog {
     }//GEN-LAST:event_tfClienteFocusLost
 
     private void btnAddProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddProductosMouseClicked
-        // TODO add your handling code here:
+        AgregarProducto agregar = new AgregarProducto(new JFrame(), true, this, temp);
+        agregar.setVisible(true); 
     }//GEN-LAST:event_btnAddProductosMouseClicked
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
