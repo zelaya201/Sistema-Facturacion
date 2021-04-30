@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 public class Factura extends javax.swing.JPanel {
-
+    classes.Factura fac;
     DefaultTableModel modelo;
     ArrayList<classes.Factura> registro;
     ArrayList<classes.Producto> producto;

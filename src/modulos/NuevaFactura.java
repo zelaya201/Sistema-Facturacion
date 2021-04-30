@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class NuevaFactura extends javax.swing.JDialog {
-
     Factura factura;
     ArrayList<classes.Detalle> temp;
     DefaultTableModel modelo;
@@ -479,6 +478,13 @@ public class NuevaFactura extends javax.swing.JDialog {
                 factura.registro.add(nueva); //Se agrega la factura al arraylist de facturas
                 factura.mostrarDatos();
                 limpiarFormulario();
+                factura.fac = nueva;
+                
+                this.dispose(); //Cierra ventana
+                
+                /* Abre ventana de Factura */
+                FacturaFinal ventanaF = new FacturaFinal(new JFrame(), true, factura, factura.fac);
+                ventanaF.setVisible(true);
             }
             
         }else{
