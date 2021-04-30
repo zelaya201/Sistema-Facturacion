@@ -30,8 +30,8 @@ public class Detalle {
         this.subTotal = subTotal;
     }
     
-    public double calcularSubTotal(Producto p) {
-        return p.getPrecio() * this.cantidad;
+    public double calcularSubTotal(Double p) {
+        return p * this.cantidad;
     }
 
     @Override
