@@ -421,6 +421,23 @@ public class NuevaFactura extends javax.swing.JDialog {
         
     }
     
+    public void limpiarFormulario(){
+        tfCliente.setText("");
+        tfTelefonoClient.setText("");
+        tfDireccion.setText("");
+        lbNoFactura.setText("No. de Factura: 000" + (factura.registro.size()+1));
+        tfVendedor.setText("");
+        tfTelefonoVendedor.setText("");
+        tfDui.setText("");
+        tfFecha.setText(factura.obtenerFechaFormateada(new Date())); //Fecha
+        modelo.setRowCount(0);
+        tablaProductosFactura.setModel(modelo);
+        subTotalFactura.setText("SUBTOTAL $ ");
+        descIVA.setText("IVA (%) $ ");
+        totalFactura.setText("TOTAL $ ");
+        tablaProductosFactura.setModel(modelo);
+    }
+    
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
@@ -461,6 +478,7 @@ public class NuevaFactura extends javax.swing.JDialog {
                 temp.clear(); // Se limpia el arraylist para no dejar detalles
                 factura.registro.add(nueva); //Se agrega la factura al arraylist de facturas
                 factura.mostrarDatos();
+                limpiarFormulario();
             }
             
         }else{
