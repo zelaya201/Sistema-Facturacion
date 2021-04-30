@@ -1,6 +1,7 @@
 
 package modulos;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,7 @@ public class Factura extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     ArrayList<classes.Factura> registro;
+    ArrayList<classes.Producto> producto;
     
     public Factura(ArrayList<classes.Factura> registro) {
         initComponents();
@@ -47,7 +49,7 @@ public class Factura extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -161,20 +163,20 @@ public class Factura extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public String obtenerFechaFormateada(Date fecha, String formato) {
-        SimpleDateFormat formatFecha = new SimpleDateFormat(formato); //Formato de fecha obtenido por el parametro
+    public String obtenerFechaFormateada(Date fecha) {
+        SimpleDateFormat formatFecha = new SimpleDateFormat("dd/MM/yyyy"); //Formato de fecha obtenido por el parametro
         return formatFecha.format(fecha); //retorna la fecha formateada
     }
     
-    private void mostrarDatos(){
+    public void mostrarDatos(){
         modelo = (DefaultTableModel)tablaFactura.getModel();
         modelo.setRowCount(0); //Limpia la tabla
-        
+
         for(classes.Factura x : registro){
             
             modelo.addRow(new Object[]{
                 "000" + classes.Factura.getNumero(), //Numero de Factura
-                obtenerFechaFormateada(x.getFecha(), "dd/MM/yyyy"), //Fecha
+                x.getFecha(), //Fecha
                 x.getCliente().getNombre(), //Cliente
                 x.getVendedor().getNombre(), //Vendedor
                 "$ " + x.getTotal() //Total venta
@@ -185,28 +187,22 @@ public class Factura extends javax.swing.JPanel {
         
     }
     
+    public static Date ParseFecha(String fecha){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try{
+            fechaDate = formato.parse(fecha);
+        } 
+        catch(ParseException ex){
+            System.out.println(ex);
+        }
+        
+        return fechaDate;
+    }
+    
     private void btnNuevaFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevaFacturaMouseClicked
         NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
         nueva.setVisible(true);
-        
-        
-        /* Factura para hacer pruebas */
-        Date fecha = new Date();
-        
-        classes.Producto p = new classes.Producto(12345, "Corn Flakes", 3.75);
-        classes.Detalle detalle = new classes.Detalle(p, 4);
-        detalle.setSubTotal(detalle.calcularSubTotal(p));
- 
-        classes.Factura f1 = new classes.Factura(fecha, registro.size() + 1);
-        
-        f1.addCliente("Jose Alberto Masferrer", "78514680", "Residencial Villas del Tempisque");
-        f1.addVendedor("12345678", "Irvin Yariel Morales", "78499652");
-        f1.addDetalle(detalle);
-        f1.setTotal(detalle.getSubTotal());
-        
-        registro.add(f1);
-        
-        mostrarDatos();
     }//GEN-LAST:event_btnNuevaFacturaMouseClicked
 
 

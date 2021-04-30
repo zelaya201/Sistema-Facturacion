@@ -15,12 +15,25 @@ public class MainView extends javax.swing.JFrame {
     
     int op = 1;
     ArrayList<classes.Factura> registro;
+    ArrayList<classes.Detalle> detalles;
 
     public MainView() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);     
         new CambiaPanel(panelPrincipal, new Home());
         registro = new ArrayList();
+        detalles = new ArrayList();
+        
+        /* Prodcutos agregados - prueba*/
+        classes.Producto p1 = new classes.Producto(1, "Sacapuntas Facela Skin Avenguers", 1.50);
+        classes.Producto p2 = new classes.Producto(2, "Libro Scribe Matematicas - 500 pags", 4);
+        
+        classes.Detalle d1 = new classes.Detalle(p1, 5);
+        classes.Detalle d2 = new classes.Detalle(p2, 3);
+        
+        detalles.add(d1);
+        detalles.add(d2);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

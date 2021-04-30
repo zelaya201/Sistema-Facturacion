@@ -22,7 +22,7 @@ public class Test {
         detalle.setSubTotal(detalle.calcularSubTotal(p));
         
         Detalle detalle2 = new Detalle(p, 34);
-        detalle.setSubTotal(detalle.calcularSubTotal(p));
+        detalle.setSubTotal(detalle2.calcularSubTotal(p));
 
         Vendedor v = new Vendedor("12345678", "Irvin", "7549632");
         
@@ -34,7 +34,6 @@ public class Test {
         f1.addDetalle(detalle2);
         f1.setTotal(detalle.getSubTotal());
         
-        System.out.println(f1);
         
         Factura f2 = new Factura(fecha, 24);
         
@@ -45,5 +44,6 @@ public class Test {
         f2.setTotal(detalle.getSubTotal());
         
         System.out.println(f2);
+        System.out.println(f1);
     }
 }

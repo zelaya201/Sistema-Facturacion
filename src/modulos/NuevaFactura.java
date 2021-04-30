@@ -1,14 +1,18 @@
 
 package modulos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class NuevaFactura extends javax.swing.JDialog {
 
     Factura factura;
-    private ArrayList<classes.Producto> temp;
+    ArrayList<classes.Detalle> temp;
+    DefaultTableModel modelo;
     
     public NuevaFactura(java.awt.Frame parent, boolean modal, Factura factura) {
         super(parent, modal);
@@ -17,11 +21,12 @@ public class NuevaFactura extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         temp = new ArrayList();
         
-        tfFecha.setText(factura.obtenerFechaFormateada(new Date(), "dd/MM/yyyy")); //Fehca
+        tfFecha.setText(factura.obtenerFechaFormateada(new Date())); //Fehca
         lbNoFactura.setText("No. de Factura: 000" + (factura.registro.size()+1)); //Numero de Factura
         
+        mostrarProductosFactura();
+        
     }
-
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -356,6 +361,25 @@ public class NuevaFactura extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public void mostrarProductosFactura(){
+        modelo = (DefaultTableModel)tablaProductosFactura.getModel();
+        modelo.setRowCount(0); //Limpia la tabla
+        
+        for(classes.Detalle d : temp){
+            modelo.addRow(new Object []{
+                d.getProducto().getCodigo(),
+                d.getCantidad(),
+                //Descripción
+                //PrecioUnitario
+                d.getSubTotal()
+            });
+        }
+        
+        tablaProductosFactura.setModel(modelo);
+        
+    }
+    
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
@@ -384,7 +408,17 @@ public class NuevaFactura extends javax.swing.JDialog {
             if(temp.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe agregar 1 o mas productos", "Productos", JOptionPane.WARNING_MESSAGE);
             }else{
+                classes.Factura nueva = new classes.Factura(Factura.ParseFecha(tfFecha.getText()), factura.registro.size() + 1); //Nueva Factura(fecha, No. de Factura)
+                nueva.addCliente(tfCliente.getText(), tfTelefonoClient.getText(), tfDireccion.getText()); //Se agrega la información del cliente
+                nueva.addVendedor(tfDui.getText(), tfVendedor.getText(), tfTelefonoVendedor.getText()); //Se agrega la informacion del Vendedor
                 
+                for(classes.Detalle p : temp){
+                    nueva.addDetalle(p); //Con el bucle se agregan todos los detalles a la factura
+                }
+                
+                temp.clear(); // Se limpia el arraylist para no dejar detalles
+                factura.registro.add(nueva); //Se agrega la factura al arraylist de facturas
+                factura.mostrarDatos();
             }
             
         }else{
@@ -395,6 +429,20 @@ public class NuevaFactura extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
+    
+    public static Date ParseFecha(String fecha){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try{
+            fechaDate = formato.parse(fecha);
+        } 
+        catch(ParseException ex){
+            System.out.println(ex);
+        }
+        
+        return fechaDate;
+    }
+   
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

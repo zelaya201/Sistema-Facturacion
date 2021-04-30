@@ -10,6 +10,10 @@ public class Detalle {
         this.producto = p;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
