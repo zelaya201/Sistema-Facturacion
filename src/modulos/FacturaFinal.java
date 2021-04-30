@@ -186,15 +186,6 @@ public class FacturaFinal extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbNombreVendedor)
-                        .addGap(46, 46, 46)
-                        .addComponent(lbDui)
-                        .addGap(75, 75, 75)
-                        .addComponent(lbTelefonoVendedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbFecha)
-                        .addGap(87, 87, 87))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbTelefono)
                             .addComponent(lbNombre)
@@ -205,6 +196,14 @@ public class FacturaFinal extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbDui, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbTelefonoVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(100, 100, 100)
@@ -332,10 +331,16 @@ public class FacturaFinal extends javax.swing.JDialog {
         
         lbNoFactura.setText("FACTURA N° 000" + selected.getNumero());
         lbNombre.setText("Nombre: " + selected.getCliente().getNombre());
-        lbTelefono.setText("Teléfono" + selected.getCliente().getTelefono());
+        lbTelefono.setText("Teléfono: " + selected.getCliente().getTelefono());
         lbDireccion.setText("Dirección: " + selected.getCliente().getDireccion());
         
         lbNombreVendedor.setText(selected.getVendedor().getNombre());
+        lbDui.setText(selected.getVendedor().getDui());
+        lbTelefonoVendedor.setText(selected.getVendedor().getTelefono());
+        lbFecha.setText(factura.obtenerFechaFormateada(selected.getFecha()));
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

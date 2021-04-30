@@ -208,8 +208,6 @@ public class Factura extends javax.swing.JPanel {
     private void btnNuevaFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevaFacturaMouseClicked
         NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
         nueva.setVisible(true);
-        
-        
     }//GEN-LAST:event_btnNuevaFacturaMouseClicked
 
     private void tablaFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaFacturaMouseClicked
