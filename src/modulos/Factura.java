@@ -73,6 +73,11 @@ public class Factura extends javax.swing.JPanel {
         tablaFactura.setRowHeight(25);
         tablaFactura.getTableHeader().setResizingAllowed(false);
         tablaFactura.getTableHeader().setReorderingAllowed(false);
+        tablaFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaFacturaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaFactura);
         if (tablaFactura.getColumnModel().getColumnCount() > 0) {
             tablaFactura.getColumnModel().getColumn(0).setResizable(false);
@@ -175,7 +180,7 @@ public class Factura extends javax.swing.JPanel {
         for(classes.Factura x : registro){
             
             modelo.addRow(new Object[]{
-                "000" + classes.Factura.getNumero(), //Numero de Factura
+                "000" + x.getNumero(), //Numero de Factura
                 obtenerFechaFormateada(x.getFecha()), //Fecha
                 x.getCliente().getNombre(), //Cliente
                 x.getVendedor().getNombre(), //Vendedor
@@ -203,7 +208,25 @@ public class Factura extends javax.swing.JPanel {
     private void btnNuevaFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevaFacturaMouseClicked
         NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
         nueva.setVisible(true);
+        
+        
     }//GEN-LAST:event_btnNuevaFacturaMouseClicked
+
+    private void tablaFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaFacturaMouseClicked
+        
+        classes.Factura selected = null;
+        int fila = tablaFactura.getSelectedRow();
+        int nFactura = Integer.parseInt(tablaFactura.getValueAt(fila, 0).toString());
+        
+        for(classes.Factura f : registro){
+            if(f.getNumero() == nFactura){
+                selected = f;
+            }
+        }
+        
+        FacturaFinal obj = new FacturaFinal(new JFrame(), true, this, selected);
+        obj.setVisible(true);
+    }//GEN-LAST:event_tablaFacturaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
