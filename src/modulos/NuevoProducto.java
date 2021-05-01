@@ -111,14 +111,9 @@ public class NuevoProducto extends javax.swing.JDialog {
 
         tfPrecio.setBackground(new java.awt.Color(255, 255, 255));
         tfPrecio.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        tfPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPrecioActionPerformed(evt);
-            }
-        });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
+                tfPrecioKeyTyped(evt);
             }
         });
 
@@ -266,10 +261,10 @@ public class NuevoProducto extends javax.swing.JDialog {
    
     }//GEN-LAST:event_taDescripcionKeyTyped
 
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
-       char val = evt.getKeyChar();
+    private void tfPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioKeyTyped
+        char val = evt.getKeyChar();
         if((val < '0' || val > '9') && (val!='.')) evt.consume();
-    }//GEN-LAST:event_jTextField5KeyTyped
+    }//GEN-LAST:event_tfPrecioKeyTyped
           
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCancelar;
