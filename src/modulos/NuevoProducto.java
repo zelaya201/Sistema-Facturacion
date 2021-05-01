@@ -6,14 +6,11 @@
 package modulos;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Sarai
- */
 public class NuevoProducto extends javax.swing.JDialog {
     Producto producto;
-   ArrayList<classes.Producto> p;
+    ArrayList<classes.Producto> p;
 
     NuevoProducto(java.awt.Frame parent, boolean modal, Producto producto, ArrayList<classes.Producto> productos) {
         super(parent, modal);
@@ -22,7 +19,6 @@ public class NuevoProducto extends javax.swing.JDialog {
         initComponents(); 
         taDescripcion.setBorder(null);
         setLocationRelativeTo(null);
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +33,7 @@ public class NuevoProducto extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        tfPrecio = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         taDescripcion = new javax.swing.JTextArea();
@@ -108,11 +104,11 @@ public class NuevoProducto extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Descripción");
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        tfPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        tfPrecio.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        tfPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                tfPrecioActionPerformed(evt);
             }
         });
 
@@ -152,7 +148,7 @@ public class NuevoProducto extends javax.swing.JDialog {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -181,7 +177,7 @@ public class NuevoProducto extends javax.swing.JDialog {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,50 +218,30 @@ public class NuevoProducto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCodigoActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void tfPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_tfPrecioActionPerformed
 
+    private void limpiarFormulario() {
+        tfCodigo.setText("");
+        taDescripcion.setText("");
+        tfPrecio.setText("");
+    }
+    
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-//        if(!tfCliente.getText().isEmpty() && 
-//                !tfVendedor.getText().isEmpty() && 
-//                !tfTelefonoClient.getText().isEmpty() &&
-//                !tfTelefonoVendedor.getText().isEmpty() &&
-//                !tfDireccion.getText().isEmpty() &&
-//                !tfDui.getText().isEmpty() &&
-//                !tfFecha.getText().isEmpty()
-//                ){
-//            if(temp.isEmpty()){
-//                JOptionPane.showMessageDialog(this, "Debe agregar 1 o mas productos", "Productos", JOptionPane.WARNING_MESSAGE);
-//            }else{
-//                classes.Factura nueva = new classes.Factura(Factura.ParseFecha(tfFecha.getText()), factura.registro.size() + 1); //Nueva Factura(fecha, No. de Factura)
-//                nueva.addCliente(tfCliente.getText(), tfTelefonoClient.getText(), tfDireccion.getText()); //Se agrega la información del cliente
-//                nueva.addVendedor(tfDui.getText(), tfVendedor.getText(), tfTelefonoVendedor.getText()); //Se agrega la informacion del Vendedor
-//                
-//                for(classes.Detalle p : temp){
-//                    nueva.addDetalle(p); //Con el bucle se agregan todos los detalles a la factura
-//                }
-//                
-//                temp.clear(); // Se limpia el arraylist para no dejar detalles
-//                factura.registro.add(nueva); //Se agrega la factura al arraylist de facturas
-//                factura.mostrarDatos();
-//                limpiarFormulario();
-//                factura.fac = nueva;
-//                
-//                this.dispose(); //Cierra ventana
-//                
-//                /* Abre ventana de Factura */
-//                FacturaFinal ventanaF = new FacturaFinal(new JFrame(), true, factura, factura.fac);
-//                ventanaF.setVisible(true);
-//            }
-//            
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Complete todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-//        }
+        if(tfCodigo.getText().isEmpty() && taDescripcion.getText().isEmpty() && tfPrecio.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE); 
+        }else{
+            classes.Producto obj = new classes.Producto(Integer.parseInt(tfCodigo.getText()), taDescripcion.getText(), Double.parseDouble(tfPrecio.getText()));
+            p.add(obj);
+            
+            producto.mostrarProductos();
+            JOptionPane.showMessageDialog(this, "Producto registrado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            
+            limpiarFormulario();
+        }
     }//GEN-LAST:event_btnGuardarMouseClicked
-
-                
-                
+              
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCancelar;
     private javax.swing.JLabel btnGuardar;
@@ -276,8 +252,8 @@ public class NuevoProducto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextArea taDescripcion;
     private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfPrecio;
     // End of variables declaration//GEN-END:variables
 }

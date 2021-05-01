@@ -31,11 +31,6 @@ public class AgregarProducto extends javax.swing.JDialog {
         this.productos = productos;
         setLocationRelativeTo(null);
         
-//        classes.Producto p = new Producto(12345, "Corn Flakes", 3.75);
-//        productos.add(p);
-//        classes.Producto p1 = new Producto(17878, "Sacapuntas", 8.4);
-//        productos.add(p1);
-        
         mostrarProductos();
     }
     

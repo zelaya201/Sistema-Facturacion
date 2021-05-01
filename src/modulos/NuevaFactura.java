@@ -32,17 +32,7 @@ public class NuevaFactura extends javax.swing.JDialog {
                 
         tfFecha.setText(factura.obtenerFechaFormateada(new Date())); //Fehca
         lbNoFactura.setText("No. de Factura: " + id.format(factura.registro.size()+1)); //Numero de Factura
-        
-        /* Prodcutos agregados - prueba*/
-        classes.Producto p1 = new classes.Producto(1, "Sacapuntas Facela Skin Avenguers", 1.50);
-        classes.Producto p2 = new classes.Producto(2, "Libro Scribe Matematicas - 500 pags", 4);
-        
-        classes.Detalle d1 = new classes.Detalle(p1, 5);
-        classes.Detalle d2 = new classes.Detalle(p2, 3);
-        
-        temp.add(d1);
-        temp.add(d2);
-        
+               
         mostrarProductosFactura();
     }
    
