@@ -1,12 +1,16 @@
-
 package modulos;
 
+import classes.ImgTabla;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,9 +25,11 @@ public class NuevaFactura extends javax.swing.JDialog {
         this.factura = factura;
         setLocationRelativeTo(null);
         temp = new ArrayList();
+        
+        DecimalFormat id = new DecimalFormat("0000");
                 
         tfFecha.setText(factura.obtenerFechaFormateada(new Date())); //Fehca
-        lbNoFactura.setText("No. de Factura: 000" + (factura.registro.size()+1)); //Numero de Factura
+        lbNoFactura.setText("No. de Factura: " + id.format(factura.registro.size()+1)); //Numero de Factura
         
         /* Prodcutos agregados - prueba*/
         classes.Producto p1 = new classes.Producto(1, "Sacapuntas Facela Skin Avenguers", 1.50);
@@ -52,8 +58,6 @@ public class NuevaFactura extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         tfVendedor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        tfTelefonoClient = new javax.swing.JTextField();
-        tfTelefonoVendedor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         tfDireccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -68,6 +72,8 @@ public class NuevaFactura extends javax.swing.JDialog {
         tablaProductosFactura = new rojerusan.RSTableMetro();
         descIVA = new javax.swing.JLabel();
         subTotalFactura = new javax.swing.JLabel();
+        tfTelefonoClient = new javax.swing.JFormattedTextField();
+        tfTelefonoVendedor = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -136,12 +142,6 @@ public class NuevaFactura extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Teléfono");
 
-        tfTelefonoClient.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefonoClient.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-
-        tfTelefonoVendedor.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelefonoVendedor.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Teléfono");
 
@@ -189,7 +189,7 @@ public class NuevaFactura extends javax.swing.JDialog {
         jLabel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         tablaProductosFactura.setBackground(new java.awt.Color(255, 255, 255));
-        tablaProductosFactura.setForeground(new java.awt.Color(255, 255, 255));
+        tablaProductosFactura.setForeground(new java.awt.Color(41, 41, 41));
         tablaProductosFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -215,7 +215,7 @@ public class NuevaFactura extends javax.swing.JDialog {
         tablaProductosFactura.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
         tablaProductosFactura.setColorForegroundHead(new java.awt.Color(51, 51, 51));
         tablaProductosFactura.setColorSelForeground(new java.awt.Color(51, 51, 51));
-        tablaProductosFactura.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tablaProductosFactura.setFuenteFilas(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tablaProductosFactura.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tablaProductosFactura.setFuenteHead(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         tablaProductosFactura.setGridColor(new java.awt.Color(255, 255, 255));
@@ -223,6 +223,11 @@ public class NuevaFactura extends javax.swing.JDialog {
         tablaProductosFactura.setRowHeight(25);
         tablaProductosFactura.getTableHeader().setResizingAllowed(false);
         tablaProductosFactura.getTableHeader().setReorderingAllowed(false);
+        tablaProductosFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductosFacturaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaProductosFactura);
         if (tablaProductosFactura.getColumnModel().getColumnCount() > 0) {
             tablaProductosFactura.getColumnModel().getColumn(0).setResizable(false);
@@ -240,6 +245,22 @@ public class NuevaFactura extends javax.swing.JDialog {
 
         subTotalFactura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         subTotalFactura.setText("SUBTOTAL $");
+
+        tfTelefonoClient.setBackground(new java.awt.Color(255, 255, 255));
+        tfTelefonoClient.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), null));
+        try {
+            tfTelefonoClient.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        tfTelefonoVendedor.setBackground(new java.awt.Color(255, 255, 255));
+        tfTelefonoVendedor.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), null));
+        try {
+            tfTelefonoVendedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,7 +294,7 @@ public class NuevaFactura extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                                .addComponent(tfVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1)
@@ -283,14 +304,14 @@ public class NuevaFactura extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfTelefonoClient, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfTelefonoClient, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfTelefonoVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfTelefonoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addGap(32, 32, 32)))
@@ -301,14 +322,14 @@ public class NuevaFactura extends javax.swing.JDialog {
                                 .addGap(21, 21, 21)
                                 .addComponent(lbNoFactura))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tfDui, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(tfDui, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                                .addComponent(tfFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))))
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(811, 811, 811)
-                        .addComponent(btnAddProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                        .addComponent(btnAddProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                         .addGap(56, 56, 56)))
                 .addGap(52, 52, 52))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,10 +348,10 @@ public class NuevaFactura extends javax.swing.JDialog {
                     .addComponent(lbNoFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(tfTelefonoClient, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tfDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfTelefonoClient))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -346,7 +367,7 @@ public class NuevaFactura extends javax.swing.JDialog {
                                     .addComponent(jLabel4)
                                     .addComponent(tfVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfTelefonoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfTelefonoVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
                                 .addComponent(tfDui)))))
                 .addGap(39, 39, 39)
                 .addComponent(btnAddProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,23 +409,33 @@ public class NuevaFactura extends javax.swing.JDialog {
 
     
     public void mostrarProductosFactura(){
+        DecimalFormatSymbols s = new DecimalFormatSymbols();
+        s.setDecimalSeparator('.');
+        DecimalFormat f = new DecimalFormat("0.00", s);
+        
+        tablaProductosFactura.setDefaultRenderer(Object.class, new ImgTabla());
         modelo = (DefaultTableModel)tablaProductosFactura.getModel();
         modelo.setRowCount(0); //Limpia la tabla
-        DecimalFormat format = new DecimalFormat("0.00");
+        
         double subtotal = 0;
         double iva = 0;
         double total = 0;
         
         for(classes.Detalle d : temp){
+            ImageIcon img = new ImageIcon(getClass().getResource("/img/eliminar.png"));
+            ImageIcon img2 = new ImageIcon(img.getImage());
+            JLabel lbImg = new JLabel(img2);
             
             d.setSubTotal(d.calcularSubTotal(d.getProducto().getPrecio()));
             
             modelo.addRow(new Object []{
+                
                 d.getProducto().getCodigo(),
                 d.getCantidad(),
                 d.getProducto().getDescripcion(),
-                "$ " + format.format(d.getProducto().getPrecio()),
-                "$ " + format.format(d.getSubTotal())
+                "$ " + f.format(d.getProducto().getPrecio()),
+                "$ " + f.format(d.getSubTotal()),
+                lbImg
             });
             
             subtotal += d.getSubTotal();
@@ -413,9 +444,9 @@ public class NuevaFactura extends javax.swing.JDialog {
         iva = 0.13 * subtotal;
         total = subtotal + iva;
         
-        subTotalFactura.setText("SUBTOTAL $ " + subtotal);
-        descIVA.setText("IVA (%) $ " + iva);
-        totalFactura.setText("TOTAL $ " + total);
+        subTotalFactura.setText("SUBTOTAL $ " + String.valueOf(f.format(subtotal)));
+        descIVA.setText("IVA (%) $ " + String.valueOf(f.format(iva)));
+        totalFactura.setText("TOTAL $ " + String.valueOf(f.format(total)));
         tablaProductosFactura.setModel(modelo);
         
     }
@@ -491,6 +522,32 @@ public class NuevaFactura extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Complete todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void tablaProductosFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosFacturaMouseClicked
+//        DefaultTableModel dtm = (DefaultTableModel) jTableProducto.getModel(); //TableProducto es el nombre de mi tabla ;)
+//        dtm.removeRow(jTableProducto.getSelectedRow());
+        
+        int columna = tablaProductosFactura.getSelectedColumn();
+       
+        if (columna == 5) {
+            int fila = tablaProductosFactura.getSelectedRow();
+            int codigo = Integer.parseInt(tablaProductosFactura.getValueAt(fila, 0).toString());
+            
+            try {
+                for (classes.Detalle x: temp) {
+                    if(x.getProducto().getCodigo() == codigo) {
+                        int pos = temp.indexOf(x);
+
+                        temp.remove(pos);
+                        mostrarProductosFactura();
+                    }
+                }
+            }catch(ConcurrentModificationException e) {
+                
+            }
+            
+        }
+    }//GEN-LAST:event_tablaProductosFacturaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -572,8 +629,8 @@ public class NuevaFactura extends javax.swing.JDialog {
     private javax.swing.JTextField tfDireccion;
     private javax.swing.JFormattedTextField tfDui;
     private javax.swing.JTextField tfFecha;
-    private javax.swing.JTextField tfTelefonoClient;
-    private javax.swing.JTextField tfTelefonoVendedor;
+    private javax.swing.JFormattedTextField tfTelefonoClient;
+    private javax.swing.JFormattedTextField tfTelefonoVendedor;
     private javax.swing.JTextField tfVendedor;
     private javax.swing.JLabel totalFactura;
     // End of variables declaration//GEN-END:variables

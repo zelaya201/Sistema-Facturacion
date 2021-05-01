@@ -91,6 +91,16 @@ public class Factura {
         return totalFactura;
     }
     
+    public double calcularSubTotal() {
+        double subTotal = 0;
+        
+        for(Detalle d: detalle) {
+            subTotal += d.getSubTotal();
+        }
+        
+        return subTotal;
+    }
+    
     public double calcularIva(double total) {
        return 0.13 * total;
     }
