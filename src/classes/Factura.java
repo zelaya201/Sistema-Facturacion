@@ -10,10 +10,10 @@ public class Factura {
     
     private Date fecha;
     private double total;
-    private static int numero;
+    private int numero;
 
     public Factura(Date fecha, int numero) {
-        Factura.numero = numero; 
+        this.numero = numero; 
         this.fecha = fecha;
         this.detalle = new ArrayList();
     }
@@ -46,12 +46,12 @@ public class Factura {
         this.total = total;
     }
 
-    public static int getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public static void setNumero(int numero) {
-        Factura.numero = numero;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public Cliente getCliente() {
@@ -78,17 +78,32 @@ public class Factura {
         this.detalle = detalles;
     }
         
-    public void calcularTotal() {
+    public double calcularTotal() {
         
+        double totalFactura = 0;
+        
+        for(Detalle d : detalle){
+            totalFactura += d.getSubTotal();
+        }
+        
+        totalFactura = calcularIva(totalFactura) + totalFactura;
+        
+        return totalFactura;
     }
     
-    public double calcularIva() {
-       return 3;
+    public double calcularSubTotal() {
+        double subTotal = 0;
+        
+        for(Detalle d: detalle) {
+            subTotal += d.getSubTotal();
+        }
+        
+        return subTotal;
+    }
+    
+    public double calcularIva(double total) {
+       return 0.13 * total;
     }
 
-    @Override
-    public String toString() {
-        return "Factura{ Num=" + Factura.numero +" "+  cliente.toString() + ", vendedor=" + vendedor.getNombre() + ", " + detalle.toString() + 
-                ", fecha=" + fecha + ", total=" + total + '}';
-    }  
+
 }

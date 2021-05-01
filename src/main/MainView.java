@@ -5,7 +5,10 @@
  */
 package main;
 
+
 import modulos.Producto;
+
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import modulos.CambiaPanel;
 import modulos.Factura;
@@ -14,11 +17,17 @@ import modulos.Home;
 public class MainView extends javax.swing.JFrame {
     
     int op = 1;
+    ArrayList<classes.Factura> registro;
+    ArrayList<classes.Detalle> detalles;
+    ArrayList<classes.Producto> producto;
 
     public MainView() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);     
         new CambiaPanel(panelPrincipal, new Home());
+        registro = new ArrayList();
+        detalles = new ArrayList(); 
+        producto = new ArrayList();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -185,7 +194,7 @@ public class MainView extends javax.swing.JFrame {
         btnProductos.setOpaque(true);
         btnProductos.setBackground(new java.awt.Color(31,36,47));
         op = 2;
-        new CambiaPanel(panelPrincipal, new Producto());
+        new CambiaPanel(panelPrincipal, new Producto(producto));
     }//GEN-LAST:event_btnProductosMouseClicked
 
     private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
@@ -203,7 +212,7 @@ public class MainView extends javax.swing.JFrame {
         btnFactura.setOpaque(true);
         btnFactura.setBackground(new java.awt.Color(31,36,47));  
         op = 3;
-        new CambiaPanel(panelPrincipal, new Factura());
+        new CambiaPanel(panelPrincipal, new Factura(registro, producto));
     }//GEN-LAST:event_btnFacturaMouseClicked
 
     //Animación tipo Hover del Menu 

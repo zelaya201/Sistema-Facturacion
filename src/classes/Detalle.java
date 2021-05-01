@@ -10,6 +10,10 @@ public class Detalle {
         this.producto = p;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
@@ -26,8 +30,8 @@ public class Detalle {
         this.subTotal = subTotal;
     }
     
-    public double calcularSubTotal(Producto p) {
-        return p.getPrecio() * this.cantidad;
+    public double calcularSubTotal(Double p) {
+        return p * this.cantidad;
     }
 
     @Override

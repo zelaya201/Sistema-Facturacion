@@ -5,26 +5,47 @@
  */
 package modulos;
 
+import classes.ImgTabla;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 public class Producto extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Producto
-     */
-    public Producto() {
+    ArrayList<classes.Producto> productos;
+    DefaultTableModel modelo;
+    
+    public Producto(ArrayList<classes.Producto> productos) {
         initComponents();
-        DefaultTableModel model=new DefaultTableModel();
-        tabla.setModel(model);
-        String titu[]={"Cod-Producto","Descripcion","Precio"};
-        model.setColumnIdentifiers(titu);
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
+        this.productos = productos;
+//        classes.Producto p1 = new classes.Producto(1, "Sacapuntas Facela Skin Avenguers", 1.50);
+//        classes.Producto p2 = new classes.Producto(2, "Libro Scribe Matematicas - 500 pags", 4);
+//        productos.add(p1);
+//        productos.add(p1);
         
-
-       
-         
+        mostrarProductos();
     }
 
+    private void mostrarProductos() {
+        DecimalFormatSymbols s = new DecimalFormatSymbols();
+        s.setDecimalSeparator('.');
+        DecimalFormat f = new DecimalFormat("0.00", s);
+        
+        modelo = (DefaultTableModel)tbProductos.getModel();
+        modelo.setRowCount(0); //Limpia la tabla
+        
+        for(classes.Producto x: productos){                      
+            modelo.addRow(new Object []{
+                x.getCodigo(),
+                x.getDescripcion(),
+                "$ " + f.format(x.getPrecio()),
+            });
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +58,7 @@ public class Producto extends javax.swing.JPanel {
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
-        Tabladeproductos = new rojerusan.RSTableMetro();
+        tbProductos = new rojerusan.RSTableMetro();
         btnNuevoProducto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -46,9 +67,9 @@ public class Producto extends javax.swing.JPanel {
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 0, 0, new java.awt.Color(19, 22, 29)), javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(204, 204, 204))));
 
-        Tabladeproductos.setBackground(new java.awt.Color(255, 255, 255));
-        Tabladeproductos.setForeground(new java.awt.Color(255, 255, 255));
-        Tabladeproductos.setModel(new javax.swing.table.DefaultTableModel(
+        tbProductos.setBackground(new java.awt.Color(255, 255, 255));
+        tbProductos.setForeground(new java.awt.Color(255, 255, 255));
+        tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -67,24 +88,24 @@ public class Producto extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        Tabladeproductos.setAltoHead(40);
-        Tabladeproductos.setColorBackgoundHead(new java.awt.Color(255, 255, 255));
-        Tabladeproductos.setColorBordeFilas(new java.awt.Color(232, 232, 232));
-        Tabladeproductos.setColorBordeHead(new java.awt.Color(232, 232, 232));
-        Tabladeproductos.setColorFilasBackgound2(new java.awt.Color(232, 232, 232));
-        Tabladeproductos.setColorFilasForeground1(new java.awt.Color(0, 0, 51));
-        Tabladeproductos.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
-        Tabladeproductos.setColorForegroundHead(new java.awt.Color(51, 51, 51));
-        Tabladeproductos.setColorSelForeground(new java.awt.Color(51, 51, 51));
-        Tabladeproductos.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        Tabladeproductos.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Tabladeproductos.setFuenteHead(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        Tabladeproductos.setGridColor(new java.awt.Color(255, 255, 255));
-        Tabladeproductos.setGrosorBordeFilas(0);
-        Tabladeproductos.setRowHeight(25);
-        Tabladeproductos.getTableHeader().setResizingAllowed(false);
-        Tabladeproductos.getTableHeader().setReorderingAllowed(false);
-        jScrollPane12.setViewportView(Tabladeproductos);
+        tbProductos.setAltoHead(40);
+        tbProductos.setColorBackgoundHead(new java.awt.Color(255, 255, 255));
+        tbProductos.setColorBordeFilas(new java.awt.Color(232, 232, 232));
+        tbProductos.setColorBordeHead(new java.awt.Color(232, 232, 232));
+        tbProductos.setColorFilasBackgound2(new java.awt.Color(232, 232, 232));
+        tbProductos.setColorFilasForeground1(new java.awt.Color(0, 0, 51));
+        tbProductos.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
+        tbProductos.setColorForegroundHead(new java.awt.Color(51, 51, 51));
+        tbProductos.setColorSelForeground(new java.awt.Color(51, 51, 51));
+        tbProductos.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tbProductos.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tbProductos.setFuenteHead(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        tbProductos.setGridColor(new java.awt.Color(255, 255, 255));
+        tbProductos.setGrosorBordeFilas(0);
+        tbProductos.setRowHeight(25);
+        tbProductos.getTableHeader().setResizingAllowed(false);
+        tbProductos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane12.setViewportView(tbProductos);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -163,58 +184,18 @@ public class Producto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProductoMouseClicked
-        NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
-        nueva.setVisible(true);
+        NuevoProducto nuevoP = new NuevoProducto(new JFrame(), true, this, productos);
+        nuevoP.setVisible(true);
     }//GEN-LAST:event_btnNuevoProductoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSTableMetro Tabladeproductos;
     private javax.swing.JLabel btnNuevoProducto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private rojerusan.RSTableMetro tablaFactura;
-    private rojerusan.RSTableMetro tablaFactura1;
-    private rojerusan.RSTableMetro tablaFactura2;
-    private rojerusan.RSTableMetro tablaFactura3;
-    private rojerusan.RSTableMetro tablaFactura4;
-    private rojerusan.RSTableMetro tablaFactura5;
-    private rojerusan.RSTableMetro tablaFactura6;
-    private rojerusan.RSTableMetro tablaFactura7;
-    private rojerusan.RSTableMetro tablaFactura8;
-    private rojerusan.RSTableMetro tablaFactura9;
+    private rojerusan.RSTableMetro tbProductos;
     // End of variables declaration//GEN-END:variables
 
 }
