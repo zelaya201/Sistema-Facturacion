@@ -15,10 +15,14 @@ public class Producto extends javax.swing.JPanel {
     public Producto() {
         initComponents();
         DefaultTableModel model=new DefaultTableModel();
-        tabla.setModel(model);
+   //     tabla.setModel(model);
         String titu[]={"Cod-Producto","Descripcion","Precio"};
         model.setColumnIdentifiers(titu);
-        tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
+     //   tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
+        
+        //Tabla
+       
+       
          
     }
 
@@ -31,131 +35,187 @@ public class Producto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        Tabladeproductos = new rojerusan.RSTableMetro();
+        btnNuevoProducto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        nuevoP = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("T A B L A - D E - P R O D U C T O S");
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel22.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(5, 0, 0, 0, new java.awt.Color(19, 22, 29)), javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(204, 204, 204))));
 
-        nuevoP.setBackground(new java.awt.Color(8, 69, 159));
-        nuevoP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nuevoP.setForeground(new java.awt.Color(255, 255, 255));
-        nuevoP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nuevoP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_25px.png"))); // NOI18N
-        nuevoP.setText("Nuevo - Producto");
-        nuevoP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nuevoP.setOpaque(true);
-        nuevoP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoPMouseClicked(evt);
+        Tabladeproductos.setBackground(new java.awt.Color(255, 255, 255));
+        Tabladeproductos.setForeground(new java.awt.Color(255, 255, 255));
+        Tabladeproductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Descripción", "Precio"
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nuevoPMouseEntered(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Tabladeproductos.setAltoHead(40);
+        Tabladeproductos.setColorBackgoundHead(new java.awt.Color(255, 255, 255));
+        Tabladeproductos.setColorBordeFilas(new java.awt.Color(232, 232, 232));
+        Tabladeproductos.setColorBordeHead(new java.awt.Color(232, 232, 232));
+        Tabladeproductos.setColorFilasBackgound2(new java.awt.Color(232, 232, 232));
+        Tabladeproductos.setColorFilasForeground1(new java.awt.Color(0, 0, 51));
+        Tabladeproductos.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
+        Tabladeproductos.setColorForegroundHead(new java.awt.Color(51, 51, 51));
+        Tabladeproductos.setColorSelForeground(new java.awt.Color(51, 51, 51));
+        Tabladeproductos.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Tabladeproductos.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Tabladeproductos.setFuenteHead(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        Tabladeproductos.setGridColor(new java.awt.Color(255, 255, 255));
+        Tabladeproductos.setGrosorBordeFilas(0);
+        Tabladeproductos.setRowHeight(25);
+        Tabladeproductos.getTableHeader().setResizingAllowed(false);
+        Tabladeproductos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane12.setViewportView(Tabladeproductos);
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
+                .addGap(27, 27, 27))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
+        );
+
+        btnNuevoProducto.setBackground(new java.awt.Color(8, 69, 159));
+        btnNuevoProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevoProducto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_25px.png"))); // NOI18N
+        btnNuevoProducto.setText("Nueva Producto");
+        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProducto.setOpaque(true);
+        btnNuevoProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNuevoProductoMouseClicked(evt);
             }
         });
 
-        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/list_view_20px.png"))); // NOI18N
+        jLabel1.setText("Productos / Inventario");
 
-        tabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tabla.setForeground(new java.awt.Color(153, 153, 153));
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "N°", "COD", "Descripcion", "Precio"
-            }
-        ));
-        jScrollPane1.setViewportView(tabla);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nuevoP, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nuevoP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
+            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nuevoPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoPMouseClicked
- NuevoProduct nuevo=new NuevoProduct(new JFrame(), true, this);
-        nuevo.setVisible(true);
-  
-     
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevoPMouseClicked
-
-    private void nuevoPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoPMouseEntered
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevoPMouseEntered
+    private void btnNuevoProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProductoMouseClicked
+       // NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
+       // nueva.setVisible(true);
+    }//GEN-LAST:event_btnNuevoProductoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSTableMetro Tabladeproductos;
+    private javax.swing.JLabel btnNuevoProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel nuevoP;
-    private javax.swing.JTable tabla;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private rojerusan.RSTableMetro tablaFactura;
+    private rojerusan.RSTableMetro tablaFactura1;
+    private rojerusan.RSTableMetro tablaFactura2;
+    private rojerusan.RSTableMetro tablaFactura3;
+    private rojerusan.RSTableMetro tablaFactura4;
+    private rojerusan.RSTableMetro tablaFactura5;
+    private rojerusan.RSTableMetro tablaFactura6;
+    private rojerusan.RSTableMetro tablaFactura7;
+    private rojerusan.RSTableMetro tablaFactura8;
+    private rojerusan.RSTableMetro tablaFactura9;
     // End of variables declaration//GEN-END:variables
 
 }
