@@ -32,17 +32,7 @@ public class NuevaFactura extends javax.swing.JDialog {
                 
         tfFecha.setText(factura.obtenerFechaFormateada(new Date())); //Fehca
         lbNoFactura.setText("No. de Factura: " + id.format(factura.registro.size()+1)); //Numero de Factura
-        
-        /* Prodcutos agregados - prueba*/
-        classes.Producto p1 = new classes.Producto(1, "Sacapuntas Facela Skin Avenguers", 1.50);
-        classes.Producto p2 = new classes.Producto(2, "Libro Scribe Matematicas - 500 pags", 4);
-        
-        classes.Detalle d1 = new classes.Detalle(p1, 5);
-        classes.Detalle d2 = new classes.Detalle(p2, 3);
-        
-        temp.add(d1);
-        temp.add(d2);
-        
+               
         mostrarProductosFactura();
     }
    
@@ -134,12 +124,22 @@ public class NuevaFactura extends javax.swing.JDialog {
                 tfClienteFocusLost(evt);
             }
         });
+        tfCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfClienteKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Vendedor:");
 
         tfVendedor.setBackground(new java.awt.Color(255, 255, 255));
         tfVendedor.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        tfVendedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfVendedorKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Teléfono");
@@ -544,6 +544,18 @@ public class NuevaFactura extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_tablaProductosFacturaMouseClicked
+
+    private void tfClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfClienteKeyTyped
+        char val = evt.getKeyChar();
+        
+        if((val<'a' || val>'z') && (val<'A' || val>'Z') && (val != ' ') && (val !='ñ')&& (val !='Ñ')&&(val<'á'|| val>'ú')&&(val<'Á'||val>'Ú')) evt.consume();
+    }//GEN-LAST:event_tfClienteKeyTyped
+
+    private void tfVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfVendedorKeyTyped
+        char val = evt.getKeyChar();
+        
+        if((val<'a' || val>'z') && (val<'A' || val>'Z') && (val != ' ') && (val !='ñ')&& (val !='Ñ')&&(val<'á'|| val>'ú')&&(val<'Á'||val>'Ú')) evt.consume();
+    }//GEN-LAST:event_tfVendedorKeyTyped
 
     /**
      * @param args the command line arguments

@@ -5,31 +5,23 @@
  */
 package modulos;
 
-import classes.ImgTabla;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 public class Producto extends javax.swing.JPanel {
-
     ArrayList<classes.Producto> productos;
     DefaultTableModel modelo;
     
     public Producto(ArrayList<classes.Producto> productos) {
         initComponents();
         this.productos = productos;
-//        classes.Producto p1 = new classes.Producto(1, "Sacapuntas Facela Skin Avenguers", 1.50);
-//        classes.Producto p2 = new classes.Producto(2, "Libro Scribe Matematicas - 500 pags", 4);
-//        productos.add(p1);
-//        productos.add(p1);
-        
+       
         mostrarProductos();
     }
 
-    private void mostrarProductos() {
+    public void mostrarProductos() {
         DecimalFormatSymbols s = new DecimalFormatSymbols();
         s.setDecimalSeparator('.');
         DecimalFormat f = new DecimalFormat("0.00", s);
