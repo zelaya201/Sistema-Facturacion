@@ -104,6 +104,11 @@ public class NuevoProducto extends javax.swing.JDialog {
                 tfCodigoActionPerformed(evt);
             }
         });
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Descripción");
@@ -115,6 +120,11 @@ public class NuevoProducto extends javax.swing.JDialog {
                 jTextField5ActionPerformed(evt);
             }
         });
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Precio:");
@@ -123,6 +133,11 @@ public class NuevoProducto extends javax.swing.JDialog {
         taDescripcion.setColumns(20);
         taDescripcion.setRows(5);
         taDescripcion.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true)));
+        taDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                taDescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(taDescripcion);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -263,6 +278,20 @@ public class NuevoProducto extends javax.swing.JDialog {
 //            JOptionPane.showMessageDialog(this, "Complete todos los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
 //        }
     }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
+        char val = evt.getKeyChar();
+        if(val < '0' || val > '9') evt.consume();
+    }//GEN-LAST:event_tfCodigoKeyTyped
+
+    private void taDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taDescripcionKeyTyped
+   
+    }//GEN-LAST:event_taDescripcionKeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+       char val = evt.getKeyChar();
+        if((val < '0' || val > '9') && (val!='.')) evt.consume();
+    }//GEN-LAST:event_jTextField5KeyTyped
 
                 
                 
