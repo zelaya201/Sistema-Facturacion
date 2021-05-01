@@ -15,13 +15,12 @@ public class Producto extends javax.swing.JPanel {
     public Producto() {
         initComponents();
         DefaultTableModel model=new DefaultTableModel();
-   //     tabla.setModel(model);
+        tabla.setModel(model);
         String titu[]={"Cod-Producto","Descripcion","Precio"};
         model.setColumnIdentifiers(titu);
-     //   tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
         
-        //Tabla
-       
+
        
          
     }
@@ -164,8 +163,8 @@ public class Producto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoProductoMouseClicked
-       // NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
-       // nueva.setVisible(true);
+        NuevaFactura nueva = new NuevaFactura(new JFrame(), true, this);
+        nueva.setVisible(true);
     }//GEN-LAST:event_btnNuevoProductoMouseClicked
 
 
