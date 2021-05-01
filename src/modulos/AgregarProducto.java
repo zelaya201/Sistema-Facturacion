@@ -6,9 +6,14 @@
 package modulos;
 
 import classes.Detalle;
+import classes.ImgTabla;
 import classes.Producto;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,12 +40,20 @@ public class AgregarProducto extends javax.swing.JDialog {
     
     
     private void mostrarProductos() {
+        tbProductos.setDefaultRenderer(Object.class, new ImgTabla());
         modelo = (DefaultTableModel)tbProductos.getModel();
         modelo.setRowCount(0); //Limpia la tabla
-        DecimalFormat f = new DecimalFormat("0.00");
+       
+        DecimalFormatSymbols s = new DecimalFormatSymbols();
+        s.setDecimalSeparator('.');
+        DecimalFormat f = new DecimalFormat("0.00", s);
         
         for (classes.Producto x: productos) {
-            modelo.addRow(new Object[]{x.getCodigo(), x.getDescripcion(), "$ " + f.format(x.getPrecio())});
+            ImageIcon img = new ImageIcon(getClass().getResource("/img/carrito.png"));
+            ImageIcon img2 = new ImageIcon(img.getImage());
+            JLabel lbImg = new JLabel(img2);
+            
+            modelo.addRow(new Object[]{x.getCodigo(), x.getDescripcion(), "$ " + f.format(x.getPrecio()), lbImg});
             tbProductos.setRowHeight(50);
         }
         tbProductos.setModel(modelo);       
@@ -92,20 +105,20 @@ public class AgregarProducto extends javax.swing.JDialog {
         });
 
         tbProductos.setBackground(new java.awt.Color(255, 255, 255));
-        tbProductos.setForeground(new java.awt.Color(255, 255, 255));
+        tbProductos.setForeground(new java.awt.Color(36, 36, 36));
         tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Descripcion", "Precio"
+                "Código", "Descripcion", "Precio", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,7 +134,7 @@ public class AgregarProducto extends javax.swing.JDialog {
         tbProductos.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
         tbProductos.setColorForegroundHead(new java.awt.Color(51, 51, 51));
         tbProductos.setColorSelForeground(new java.awt.Color(51, 51, 51));
-        tbProductos.setFuenteFilas(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tbProductos.setFuenteFilas(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         tbProductos.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tbProductos.setFuenteHead(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         tbProductos.setGridColor(new java.awt.Color(255, 255, 255));
@@ -138,8 +151,9 @@ public class AgregarProducto extends javax.swing.JDialog {
         if (tbProductos.getColumnModel().getColumnCount() > 0) {
             tbProductos.getColumnModel().getColumn(0).setResizable(false);
             tbProductos.getColumnModel().getColumn(1).setResizable(false);
-            tbProductos.getColumnModel().getColumn(1).setPreferredWidth(350);
+            tbProductos.getColumnModel().getColumn(1).setPreferredWidth(500);
             tbProductos.getColumnModel().getColumn(2).setResizable(false);
+            tbProductos.getColumnModel().getColumn(3).setPreferredWidth(5);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -204,22 +218,49 @@ public class AgregarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void tbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosMouseClicked
-        int fila = tbProductos.getSelectedRow();
-        int codigo = Integer.parseInt(tbProductos.getValueAt(fila, 0).toString());
+//        int fila = tbProductos.getSelectedRow();
+//        int codigo = Integer.parseInt(tbProductos.getValueAt(fila, 0).toString());
+//        
+//        int r = JOptionPane.showConfirmDialog(this, "¿Desea agregar este producto?", "Agregar Producto", JOptionPane.WARNING_MESSAGE);
+//       
+//        if (r == 0) {
+//            for (Producto x: productos) {
+//                if(x.getCodigo() == codigo) {
+//                    try {
+//                        int cantidad = Integer.valueOf(JOptionPane.showInputDialog("Ingrese la cantidad a registrar de " + String.valueOf(x.getDescripcion() + ": ")));
+//                        Detalle obj = new Detalle(x, cantidad);
+//
+//                        temp.add(obj);
+//
+//                        newFactura.mostrarProductosFactura();
+//                        JOptionPane.showMessageDialog(this, "Producto agregado correctamente", "Agregar Producto", JOptionPane.INFORMATION_MESSAGE);
+//                    }catch(NumberFormatException e) {
+//                        
+//                    }
+//                    
+//                }
+//            }
+//        }
         
-        int r = JOptionPane.showConfirmDialog(this, "¿Desea agregar este producto?", "Agregar Producto", JOptionPane.WARNING_MESSAGE);
+        int columna = tbProductos.getSelectedColumn();
        
-        if (r == 0) {
-            for (Producto x: productos) {
-                if(x.getCodigo() == codigo) {
-                    int cantidad = Integer.valueOf(JOptionPane.showInputDialog("Ingrese la cantidad a registrar: "));
-                    Detalle obj = new Detalle(x, cantidad);
-                    
-                    temp.add(obj);
-                    
-                    newFactura.mostrarProductosFactura();
-                    JOptionPane.showMessageDialog(this, "Producto agregado correctamente", "Agregar Producto", JOptionPane.INFORMATION_MESSAGE);
+        if (columna == 3) {
+            int fila = tbProductos.getSelectedRow();
+            int codigo = Integer.parseInt(tbProductos.getValueAt(fila, 0).toString());
+            
+            try {
+                for (classes.Producto x: productos) {
+                    if(x.getCodigo() == codigo) {
+                        int cantidad = Integer.valueOf(JOptionPane.showInputDialog("Ingrese la cantidad a registrar de " + String.valueOf(x.getDescripcion() + ": ")));
+                        Detalle obj = new Detalle(x, cantidad);
+                        temp.add(obj);
+
+                        newFactura.mostrarProductosFactura();
+                        JOptionPane.showMessageDialog(this,  String.valueOf(x.getDescripcion()) + " agregado correctamente", "Agregar Producto", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
+            }catch(NumberFormatException e) {
+                
             }
         }
     }//GEN-LAST:event_tbProductosMouseClicked
